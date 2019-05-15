@@ -48,18 +48,18 @@ def handle_text_message(event):
 ##        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 ##        print(rich_menu_id)
     if text == 'profile':
-        if isinstance(event.source, SourceUser):
-            profile = line_bot_api.get_profile(event.source.user_id)
-            line_bot_api.reply_message(
-                event.reply_token, [
-                    TextSendMessage(text='Display name: ' + profile.display_name),
-                    TextSendMessage(text='Status message: ' + profile.status_message)
-                ]
-            )
-        else:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text="Bot can't use profile API without user ID"))
+        #if isinstance(event.source, SourceUser):
+        profile = line_bot_api.get_profile(event.source.user_id)
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='Display name: ' + profile.display_name),
+                TextSendMessage(text='Status message: ' + profile.status_message)
+            ]
+        )
+##        else:
+##            line_bot_api.reply_message(
+##                event.reply_token,
+##                TextSendMessage(text="Bot can't use profile API without user ID"))
     elif text == 'chk':
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text="no"))        

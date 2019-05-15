@@ -32,9 +32,36 @@ def webhook():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+    text = event.message.text
+    
+    if text == 'menu':
+        rich_menu_to_create = RichMenu(
+        size=RichMenuSize(width=2500, height=843),
+        selected=False,
+        name="Nice richmenu",
+        chat_bar_text="Tap here",
+        areas=[RichMenuArea(
+            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+            action=URIAction(label='Go to line.me', uri='https://line.me'))]
+        )
+        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+        print(rich_menu_id)
+    elif text == 'profile':
+        if isinstance(event.source, SourceUser):
+            profile = line_bot_api.get_profile(event.source.user_id)
+            line_bot_api.reply_message(
+                event.reply_token, [
+                    TextSendMessage(text='Display name: ' + profile.display_name),
+                    TextSendMessage(text='Status message: ' + profile.status_message)
+                ]
+            )
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="Bot can't use profile API without user ID"))
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,TextSendMessage(text=event.message.text))
 
 
 if __name__ == "__main__":

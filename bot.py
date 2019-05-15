@@ -45,6 +45,7 @@ def handle_message(event):
             action=URIAction(label='Go to line.me', uri='https://line.me'))]
         )
         rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
         print(rich_menu_id)
     elif text == 'profile':
         if isinstance(event.source, SourceUser):
@@ -59,6 +60,9 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="Bot can't use profile API without user ID"))
+    elif text == 'chk':
+        line_bot_api.reply_message(
+            event.reply_token,TextSendMessage(text="no"))        
     else:
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text=event.message.text))

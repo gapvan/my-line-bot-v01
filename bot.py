@@ -31,23 +31,23 @@ def webhook():
     
 
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
+def handle_text_message(event):
     text = event.message.text
     
-    if text == 'menu':
-        rich_menu_to_create = RichMenu(
-        size=RichMenuSize(width=2500, height=843),
-        selected=False,
-        name="Nice richmenu",
-        chat_bar_text="Tap here",
-        areas=[RichMenuArea(
-            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
-            action=URIAction(label='Go to line.me', uri='https://line.me'))]
-        )
-        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
-        print(rich_menu_id)
-    elif text == 'profile':
+##    if text == 'menu':
+##        rich_menu_to_create = RichMenu(
+##        size=RichMenuSize(width=2500, height=843),
+##        selected=False,
+##        name="Nice richmenu",
+##        chat_bar_text="Tap here",
+##        areas=[RichMenuArea(
+##            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+##            action=URIAction(label='Go to line.me', uri='https://line.me'))]
+##        )
+##        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+##        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
+##        print(rich_menu_id)
+    if text == 'profile':
         if isinstance(event.source, SourceUser):
             profile = line_bot_api.get_profile(event.source.user_id)
             line_bot_api.reply_message(

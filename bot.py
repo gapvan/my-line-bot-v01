@@ -53,7 +53,7 @@ def handle_message(event):
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text="บ้าบอ"))
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=str(event.source)))
+            event.reply_token,TextSendMessage(text=str(event.source.userId)))
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text=event.source.type))
 ##        line_bot_api.reply_message(

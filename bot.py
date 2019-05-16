@@ -1,12 +1,10 @@
-import json
-
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (LineBotApiError,InvalidSignatureError)
 from linebot.models import (MessageEvent,TextMessage,TextSendMessage,SourceUser,SourceGroup,SourceRoom)
 
 app = Flask(__name__)
-
+keep_uid = ""
 line_bot_api = LineBotApi('E4ABmKEmT3dLY53SL8AV2UhvlQh16gWPFCBI086NfByC7O1+odYU/i6K/JPAOVCLh8bygVtlNRP8ZCnY4Gx1QvNagk4eN/0gwfDzDGhUQ/T4JjPD8tEoBbZiCubTH1Uyxvi23Im9stUDxiQMzthQnwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('1c8b7fb623926e7f7f22af4554ebf6d9')
 
@@ -54,9 +52,9 @@ def handle_message(event):
 ##            event.reply_token,TextSendMessage(text="ok"))
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text="บ้าบอ"))
-        aryXX = json.load(str(event.source))
+        keep_uid = str(event.source)[str(event.source).find('userId'):]
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=str(aryXX['type'])))
+            event.reply_token,TextSendMessage(text=str(keep_uid)))
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text=event.source.type))
 ##        line_bot_api.reply_message(

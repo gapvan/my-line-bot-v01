@@ -51,7 +51,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text="ok"))
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=event.source.userId))
+            event.reply_token,TextSendMessage(text=str(event.source.userId)))
         
 ##        profile = line_bot_api.get_profile(event.source.userId)
 ##        line_bot_api.reply_message(

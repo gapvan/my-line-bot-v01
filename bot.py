@@ -48,16 +48,16 @@ def handle_message(event):
 ##        print(rich_menu_id)
     if text == 'profile':
         #if isinstance(event.source, SourceUser):
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text="ok"))
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text="ok"))
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=', '.join(event)))
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=event.type))
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=event.source.type))
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=event.source.userId))
+            event.reply_token,TextSendMessage(text="".join(event)))
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text=event.type))
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text=event.source.type))
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text=event.source.userId))
         
 ##        profile = line_bot_api.get_profile(event.source.userId)
 ##        line_bot_api.reply_message(

@@ -52,7 +52,7 @@ def handle_message(event):
 ##            event.reply_token,TextSendMessage(text="ok"))
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text="บ้าบอ"))
-        keep_uid = str(event.source)[str(event.source).find('userId'):]
+        keep_uid = str(event.source)[str(event.source).find('userId')+11:str(event.source).find('"',str(event.source).find('userId')+11)]
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text=str(keep_uid)))
 ##        line_bot_api.reply_message(

@@ -62,13 +62,15 @@ def handle_message(event):
         
         profile = line_bot_api.get_profile(str(keep_uid))
         line_bot_api.reply_message(
-            event.reply_token, [
-                TextSendMessage(text='Display name: ' + profile.display_name),
-                TextSendMessage(text='user_id: ' + profile.user_id),
-                TextSendMessage(text='picture_url: ' + profile.picture_url),
-                TextSendMessage(text='Status message: ' + profile.status_message)  
-            ]
-        )
+            event.reply_token,TextSendMessage(text=str(profile)))
+##        line_bot_api.reply_message(
+##            event.reply_token, [
+##                TextSendMessage(text='Display name: ' + profile.display_name),
+##                TextSendMessage(text='user_id: ' + profile.user_id),
+##                TextSendMessage(text='picture_url: ' + profile.picture_url),
+##                TextSendMessage(text='Status message: ' + profile.status_message)  
+##            ]
+##        )
 ##        print(profile.display_name)
 ##        print(profile.user_id)
 ##        print(profile.picture_url)

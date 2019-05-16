@@ -51,7 +51,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text="ok"))
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=event.message.id))
+            event.reply_token,TextSendMessage(text=', '.join(event)))
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text=event.type))
         line_bot_api.reply_message(

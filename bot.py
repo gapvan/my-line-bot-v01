@@ -53,22 +53,22 @@ def handle_message(event):
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text="บ้าบอ"))
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=str(keep_uid)))
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text=str(keep_uid)))
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text=event.source.type))
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text=event.source.userId))
         
-##        profile = line_bot_api.get_profile(event.source.userId)
-##        line_bot_api.reply_message(
-##            event.reply_token, [
-##                TextSendMessage(text='Display name: ' + profile.display_name),
-##                TextSendMessage(text='user_id: ' + profile.user_id),
-##                TextSendMessage(text='picture_url: ' + profile.picture_url),
-##                TextSendMessage(text='Status message: ' + profile.status_message)  
-##            ]
-##        )
+        profile = line_bot_api.get_profile(str(keep_uid))
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='Display name: ' + profile.display_name),
+                TextSendMessage(text='user_id: ' + profile.user_id),
+                TextSendMessage(text='picture_url: ' + profile.picture_url),
+                TextSendMessage(text='Status message: ' + profile.status_message)  
+            ]
+        )
 ##        print(profile.display_name)
 ##        print(profile.user_id)
 ##        print(profile.picture_url)

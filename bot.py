@@ -48,8 +48,8 @@ def handle_message(event):
 ##        print(rich_menu_id)
     if text == 'profile':
         #if isinstance(event.source, SourceUser):
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text="ok"))
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text="ok"))
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text="บ้าบอ"))
         line_bot_api.reply_message(

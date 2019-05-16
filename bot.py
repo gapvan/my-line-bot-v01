@@ -25,8 +25,7 @@ def webhook():
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
-        abort(400)
-        
+        abort(400)       
     return 'OK'
     
 
@@ -48,10 +47,11 @@ def handle_message(event):
 ##        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 ##        print(rich_menu_id)
     if text == 'profile':
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=str(event))
         #if isinstance(event.source, SourceUser):
-##        profile = line_bot_api.get_profile(event.source.user_id)
+        line_bot_api.reply_message(
+            event.reply_token,TextSendMessage(text=event.source.userId))
+        
+##        profile = line_bot_api.get_profile(event.source.userId)
 ##        line_bot_api.reply_message(
 ##            event.reply_token, [
 ##                TextSendMessage(text='Display name: ' + profile.display_name),

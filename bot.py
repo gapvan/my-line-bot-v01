@@ -1,7 +1,8 @@
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (LineBotApiError,InvalidSignatureError)
-from linebot.models import (MessageEvent,TextMessage,TextSendMessage,SourceUser,SourceGroup,SourceRoom,RichMenu,RichMenuSize,RichMenuArea,RichMenuBounds,URIAction)
+from linebot.models import (MessageEvent,TextMessage,TextSendMessage,SourceUser,SourceGroup,SourceRoom,
+                            RichMenu,RichMenuSize,RichMenuArea,RichMenuBounds,URIAction)
 
 app = Flask(__name__)
 keep_uid = ""

@@ -1,7 +1,7 @@
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (LineBotApiError,InvalidSignatureError)
-from linebot.models import (MessageEvent,TextMessage,TextSendMessage,SourceUser,SourceGroup,SourceRoom)
+from linebot.models import (MessageEvent,TextMessage,TextSendMessage,SourceUser,SourceGroup,SourceRoom,RichMenu,RichMenuSize,RichMenuArea,RichMenuBounds,URIAction)
 
 app = Flask(__name__)
 keep_uid = ""
@@ -46,7 +46,7 @@ def handle_message(event):
 ##        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
 ##        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 ##        print(rich_menu_id)
-    if text == 'profile':
+    if text == 'Profile':
         #if isinstance(event.source, SourceUser):
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text="ok"))
@@ -87,9 +87,46 @@ def handle_message(event):
 ##            line_bot_api.reply_message(
 ##                event.reply_token,
 ##                TextSendMessage(text="Bot can't use profile API without user ID"))
-    elif text == 'chk':
+    elif text == 'Hi':
+        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
+        profile = line_bot_api.get_profile(str(keep_uid))
+        displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
+#str(event.source).find('"',str(event.source).find('displayName')+15)
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text="no"))        
+            event.reply_token,TextSendMessage(text='hi '+str(displayName)))
+            #event.reply_token,TextSendMessage(text='hi '+str(displayName)))
+    elif text == 'Excel':
+        line_bot_api.reply_message(
+            event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1c_Gmmq19LMgDsdBNzo46F1zt_rWp8RXv'))
+    elif text == 'Image':
+        line_bot_api.reply_message(
+            event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1h1e1iLJ20LgH2H_nqR1FWE1bmJ_Ks9md'))
+    elif text == 'Menu':
+        rich_menu_to_create = RichMenu(
+            size=RichMenuSize(width=800, height=270),
+            selected=False,
+            name="Nice richmenu",
+            chat_bar_text="Tap here",
+            areas=[(RichMenuArea(
+                bounds=RichMenuBounds(x=0, y=0, width=266, height=270),
+                action=URIAction(label='facebook', uri='https://www.facebook.com'))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=267, y=0, width=267, height=270),
+                action=URIAction(label='youtube', uri='https://www.youtube.com'))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=533, y=0, width=267, height=270),
+                action=URIAction(label='twitter', uri='https://twitter.com')))
+                ]
+        )
+        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+        print(rich_menu_id)
+        
+        with open('.//sample_menu 002.png', 'rb') as f:
+            line_bot_api.set_rich_menu_image(rich_menu_id, 'image/png', f)
+                
+        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
+        line_bot_api.link_rich_menu_to_user(keep_uid, rich_menu_id)
+
     else:
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text=event.message.text))

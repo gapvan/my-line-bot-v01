@@ -101,6 +101,37 @@ def handle_message(event):
     elif text == 'Image':
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1h1e1iLJ20LgH2H_nqR1FWE1bmJ_Ks9md'))
+	elif text == 'Monitor':
+        rich_menu_to_create = RichMenu(
+            size=RichMenuSize(width=800, height=540),
+            selected=False,
+            name="monitor_task",
+            areas=[(RichMenuArea(
+                bounds=RichMenuBounds(x=0, y=0, width=266, height=270),
+                action=URIAction(label='WPRS', uri='https://www.facebook.com'))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=267, y=0, width=267, height=270),
+                action=URIAction(label='CNSGNSALE1', uri='https://www.youtube.com'))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=533, y=0, width=267, height=270),
+                action=URIAction(label='STSALE', uri='https://passport.central.co.th/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=https://www.successfactors.com/CENTRAL'))),
+				(RichMenuArea(
+                bounds=RichMenuBounds(x=0, y=271, width=266, height=270),
+                action=URIAction(label='CNSGNSALE', uri=''))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=267, y=271, width=267, height=270),
+                action=URIAction(label='blank1', uri=''))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=533, y=271, width=267, height=270),
+                action=URIAction(label='blank2', uri='')))				
+                ]
+        )
+        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+        print(rich_menu_id)
+        
+        with open('.//monitor_task.png', 'rb') as f:
+            line_bot_api.set_rich_menu_image(rich_menu_id, 'image/png', f)
+
     elif text == 'Menu':
         rich_menu_to_create = RichMenu(
             size=RichMenuSize(width=800, height=540),

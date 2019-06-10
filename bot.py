@@ -122,8 +122,7 @@ def handle_message(event):
 ##                        area=ImagemapArea(x=533, y=271, width=267, height=270))]
 ##            )
 ##        )
-        line_bot_api.reply_message(
-            event.reply_token,ImagemapSendMessage(
+        line_bot_api.ImagemapSendMessage(
                 base_url='https://charabizasia.files.wordpress.com/2017/07/main-1.jpg?w=1040',
                 alt_text='monitor_task',
                 base_size=BaseSize(height=623, width=1040),
@@ -132,8 +131,7 @@ def handle_message(event):
                         area=ImagemapArea(x=0, y=0, width=320, height=320)),
                     MessageImagemapAction(text='STSALE',
                         area=ImagemapArea(x=720, y=303, width=320, height=320))]
-            )
-       )
+        )
 
     elif text == 'Menu':
         rich_menu_to_create = RichMenu(

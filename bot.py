@@ -102,24 +102,36 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1h1e1iLJ20LgH2H_nqR1FWE1bmJ_Ks9md'))
     elif text == 'Monitor':
+##        line_bot_api.reply_message(
+##            event.reply_token,ImagemapSendMessage(
+##                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png/800',
+##                alt_text='monitor_task',
+##                base_size=BaseSize(height=540, width=800),
+##                actions=[
+##                    URIImagemapAction(link_uri='https://www.facebook.com',
+##                        area=ImagemapArea(x=0, y=0, width=266, height=270)),
+##                    MessageImagemapAction(text='CNSGNSALE1',
+##                        area=ImagemapArea(x=267, y=0, width=267, height=270)),
+##                    MessageImagemapAction(text='STSALE',
+##                        area=ImagemapArea(x=533, y=0, width=267, height=270)),
+##                    MessageImagemapAction(text='CNSGNSALE',
+##                        area=ImagemapArea(x=0, y=271, width=266, height=270)),
+##                    MessageImagemapAction(text='blank1',
+##                        area=ImagemapArea(x=267, y=271, width=267, height=270)),
+##                    MessageImagemapAction(text='blank2',
+##                        area=ImagemapArea(x=533, y=271, width=267, height=270))]
+##            )
+##        )
         line_bot_api.reply_message(
             event.reply_token,ImagemapSendMessage(
-                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png/800',
+                base_url='https://charabizasia.files.wordpress.com/2017/07/main-1.jpg?w=1040',
                 alt_text='monitor_task',
-                base_size=BaseSize(height=540, width=800),
+                base_size=BaseSize(height=623, width=1040),
                 actions=[
-                    URIImagemapAction(link_uri='https://www.facebook.com',
-                        area=ImagemapArea(x=0, y=0, width=266, height=270)),
                     MessageImagemapAction(text='CNSGNSALE1',
-                        area=ImagemapArea(x=267, y=0, width=267, height=270)),
+                        area=ImagemapArea(x=0, y=0, width=320, height=320)),
                     MessageImagemapAction(text='STSALE',
-                        area=ImagemapArea(x=533, y=0, width=267, height=270)),
-                    MessageImagemapAction(text='CNSGNSALE',
-                        area=ImagemapArea(x=0, y=271, width=266, height=270)),
-                    MessageImagemapAction(text='blank1',
-                        area=ImagemapArea(x=267, y=271, width=267, height=270)),
-                    MessageImagemapAction(text='blank2',
-                        area=ImagemapArea(x=533, y=271, width=267, height=270))]
+                        area=ImagemapArea(x=720, y=303, width=320, height=320))]
             )
        )
 

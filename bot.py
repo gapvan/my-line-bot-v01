@@ -103,25 +103,34 @@ def handle_message(event):
             event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1h1e1iLJ20LgH2H_nqR1FWE1bmJ_Ks9md'))
     elif text == 'Menu':
         rich_menu_to_create = RichMenu(
-            size=RichMenuSize(width=800, height=270),
+            size=RichMenuSize(width=800, height=540),
             selected=False,
-            name="Nice richmenu",
+            name="Main Menu",
             chat_bar_text="Tap here",
             areas=[(RichMenuArea(
                 bounds=RichMenuBounds(x=0, y=0, width=266, height=270),
-                action=URIAction(label='facebook', uri='https://www.facebook.com'))),
+                action=URIAction(label='monitor_task', uri='https://www.facebook.com'))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=267, y=0, width=267, height=270),
-                action=URIAction(label='youtube', uri='https://www.youtube.com'))),
+                action=URIAction(label='report', uri='https://www.youtube.com'))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=533, y=0, width=267, height=270),
-                action=URIAction(label='twitter', uri='https://twitter.com')))
+                action=URIAction(label='cnext', uri='https://passport.central.co.th/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=https://www.successfactors.com/CENTRAL'))),
+				(RichMenuArea(
+                bounds=RichMenuBounds(x=0, y=271, width=266, height=270),
+                action=URIAction(label='issue_wo', uri='https://www.facebook.com'))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=267, y=271, width=267, height=270),
+                action=URIAction(label='blank', uri='https://www.youtube.com'))),
+                (RichMenuArea(
+                bounds=RichMenuBounds(x=533, y=271, width=267, height=270),
+                action=URIAction(label='meeting_room', uri='https://twitter.com')))				
                 ]
         )
         rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
         print(rich_menu_id)
         
-        with open('.//sample_menu 002.png', 'rb') as f:
+        with open('.//main_menu.png', 'rb') as f:
             line_bot_api.set_rich_menu_image(rich_menu_id, 'image/png', f)
                 
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]

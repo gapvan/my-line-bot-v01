@@ -127,7 +127,7 @@ def handle_message(event):
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         line_bot_api.link_rich_menu_to_user(keep_uid, rich_menu_id)
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=str(rich_menu_id()))
+            event.reply_token,TextSendMessage(text=str(rich_menu_id)))
 
     else:
         line_bot_api.reply_message(

@@ -104,7 +104,7 @@ def handle_message(event):
     elif text == 'Monitor':
         line_bot_api.reply_message(
             event.reply_token,ImagemapSendMessage(
-                base_url='https://github.com/gapvan/my-line-bot-v01/blob/master/monitor_task.png',
+                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png',
                 alt_text='monitor_task',
                 base_size=BaseSize(height=540, width=800),
                 actions=[

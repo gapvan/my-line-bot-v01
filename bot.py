@@ -106,7 +106,7 @@ def handle_message(event):
                 action=URIAction(label='cnext', uri='https://passport.central.co.th/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=https://www.successfactors.com/CENTRAL'))),
 		(RichMenuArea(
                 bounds=RichMenuBounds(x=0, y=271, width=266, height=270),
-                action=MessageAction(label="issue", text="Issue"))),
+                action=URIAction(label='issue', uri='https://ris6789.central.co.th/arsys/shared/login.jsp?/arsys/'))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=267, y=271, width=267, height=270),
                 action=MessageAction(label=" ", text="Nothing"))),

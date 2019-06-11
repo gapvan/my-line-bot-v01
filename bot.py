@@ -124,6 +124,7 @@ def handle_message(event):
         )
 
     elif text == 'Menu':
+        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         rich_menu_to_create = RichMenu(
             size=RichMenuSize(width=800, height=540),
             selected=False,
@@ -131,8 +132,8 @@ def handle_message(event):
             chat_bar_text="Tap here",
             areas=[(RichMenuArea(
                 bounds=RichMenuBounds(x=0, y=0, width=266, height=270),
-                action=line_bot_api.reply_message(
-                        event.reply_token,ImagemapSendMessage(
+                action=line_bot_api.push_message(
+                        keep_uid,ImagemapSendMessage(
                             base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png?w=800',
                             alt_text='monitor_task',
                             base_size=BaseSize(height=540, width=800),

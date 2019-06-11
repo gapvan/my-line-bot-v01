@@ -122,18 +122,6 @@ def handle_message(event):
                         area=ImagemapArea(x=533, y=271, width=267, height=270))]
             )
         )
-##        line_bot_api.reply_message(
-##            event.reply_token,ImagemapSendMessage(
-##                base_url='https://charabizasia.files.wordpress.com/2017/07/main-1.jpg?w=1040',
-##                alt_text='monitor_task',
-##                base_size=BaseSize(height=623, width=1040),
-##                actions=[
-##                    MessageImagemapAction(text='CNSGNSALE1',
-##                        area=ImagemapArea(x=0, y=0, width=320, height=320)),
-##                    MessageImagemapAction(text='STSALE',
-##                        area=ImagemapArea(x=720, y=303, width=320, height=320))]
-##            )
-##        )
 
     elif text == 'Menu':
         rich_menu_to_create = RichMenu(
@@ -143,7 +131,27 @@ def handle_message(event):
             chat_bar_text="Tap here",
             areas=[(RichMenuArea(
                 bounds=RichMenuBounds(x=0, y=0, width=266, height=270),
-                action=URIAction(label='monitor_task', uri='https://www.facebook.com'))),
+                action=line_bot_api.reply_message(
+                        event.reply_token,ImagemapSendMessage(
+                            base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png?w=800',
+                            alt_text='monitor_task',
+                            base_size=BaseSize(height=540, width=800),
+                            actions=[
+                                URIImagemapAction(link_uri='https://www.facebook.com',
+                                    area=ImagemapArea(x=0, y=0, width=266, height=270)),
+                                MessageImagemapAction(text='CNSGNSALE1',
+                                    area=ImagemapArea(x=267, y=0, width=267, height=270)),
+                                MessageImagemapAction(text='STSALE',
+                                    area=ImagemapArea(x=533, y=0, width=267, height=270)),
+                                MessageImagemapAction(text='CNSGNSALE',
+                                    area=ImagemapArea(x=0, y=271, width=266, height=270)),
+                                MessageImagemapAction(text='blank1',
+                                    area=ImagemapArea(x=267, y=271, width=267, height=270)),
+                                MessageImagemapAction(text='blank2',
+                                    area=ImagemapArea(x=533, y=271, width=267, height=270))]
+                        )
+                    )
+                )),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=267, y=0, width=267, height=270),
                 action=URIAction(label='report', uri='https://www.youtube.com'))),
@@ -173,8 +181,9 @@ def handle_message(event):
             event.reply_token,TextSendMessage(text=str(rich_menu_id)))
 
     else:
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=event.message.text))
+        print(event.message.text)
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text=event.message.text))
 
 
 if __name__ == "__main__":

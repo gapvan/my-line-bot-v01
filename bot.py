@@ -54,11 +54,11 @@ def handle_message(event):
             event.reply_token,ImagemapSendMessage(
                 base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png?w=1040',
                 alt_text='Image',
-                base_size=BaseSize(height=702, width=1040),
+                base_size=BaseSize(height=1040, width=1040),
                 actions=[
                     #URIImagemapAction(link_uri='https://www.facebook.com',
                     MessageImagemapAction(text='full menu',
-                        area=ImagemapArea(x=0, y=0, width=1040, height=702))]
+                        area=ImagemapArea(x=0, y=0, width=1040, height=1040))]
             )
         )
     elif text == 'MeetingRoom':
@@ -69,23 +69,23 @@ def handle_message(event):
     elif text == 'Monitor':
         line_bot_api.reply_message(
             event.reply_token,ImagemapSendMessage(
-                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png?w=800',
+                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png?w=1040',
                 alt_text='monitor_task',
-                base_size=BaseSize(height=540, width=800),
+                base_size=BaseSize(height=1040, width=1040),
                 actions=[
                     #URIImagemapAction(link_uri='https://www.facebook.com',
                     MessageImagemapAction(text='WPRS',
-                        area=ImagemapArea(x=0, y=0, width=266, height=270)),
+                        area=ImagemapArea(x=0, y=0, width=347, height=520)),
                     MessageImagemapAction(text='CNSGNSALE1',
-                        area=ImagemapArea(x=267, y=0, width=267, height=270)),
+                        area=ImagemapArea(x=347, y=0, width=347, height=520)),
                     MessageImagemapAction(text='STSALE',
-                        area=ImagemapArea(x=533, y=0, width=267, height=270)),
+                        area=ImagemapArea(x=694, y=0, width=347, height=520)),
                     MessageImagemapAction(text='CNSGNSALE',
-                        area=ImagemapArea(x=0, y=271, width=266, height=270)),
+                        area=ImagemapArea(x=0, y=521, width=347, height=520)),
                     MessageImagemapAction(text='blank1',
-                        area=ImagemapArea(x=267, y=271, width=267, height=270)),
+                        area=ImagemapArea(x=347, y=521, width=347, height=520)),
                     MessageImagemapAction(text='blank2',
-                        area=ImagemapArea(x=533, y=271, width=267, height=270))]
+                        area=ImagemapArea(x=694, y=521, width=347, height=520))]
             )
         )
     elif text == 'Menu':

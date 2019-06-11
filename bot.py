@@ -52,8 +52,8 @@ def handle_message(event):
 ##                preview_image_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png'))
         line_bot_api.reply_message(
             event.reply_token,ImagemapSendMessage(
-                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png?w=1040',
-                alt_text='menu',
+                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png',
+                alt_text='Image',
                 base_size=BaseSize(height=702, width=1040),
                 actions=[
                     #URIImagemapAction(link_uri='https://www.facebook.com',

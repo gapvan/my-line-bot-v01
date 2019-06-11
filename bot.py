@@ -28,73 +28,20 @@ def webhook():
         abort(400)       
     return 'OK'
     
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    
-##    if text == 'menu':
-##        rich_menu_to_create = RichMenu(
-##        size=RichMenuSize(width=2500, height=843),
-##        selected=False,
-##        name="Nice richmenu",
-##        chat_bar_text="Tap here",
-##        areas=[RichMenuArea(
-##            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
-##            action=URIAction(label='Go to line.me', uri='https://line.me'))]
-##        )
-##        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-##        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
-##        print(rich_menu_id)
     if text == 'Profile':
-        #if isinstance(event.source, SourceUser):
-##        line_bot_api.reply_message(
-##            event.reply_token,TextSendMessage(text="ok"))
-##        line_bot_api.reply_message(
-##            event.reply_token,TextSendMessage(text="บ้าบอ"))
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
-##        line_bot_api.reply_message(
-##            event.reply_token,TextSendMessage(text=str(keep_uid)))
-##        line_bot_api.reply_message(
-##            event.reply_token,TextSendMessage(text=event.source.type))
-##        line_bot_api.reply_message(
-##            event.reply_token,TextSendMessage(text=event.source.userId))
-        
         profile = line_bot_api.get_profile(str(keep_uid))
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text=str(profile)))
-##        line_bot_api.reply_message(
-##            event.reply_token, [
-##                TextSendMessage(text='Display name: ' + profile.display_name),
-##                TextSendMessage(text='user_id: ' + profile.user_id),
-##                TextSendMessage(text='picture_url: ' + profile.picture_url),
-##                TextSendMessage(text='Status message: ' + profile.status_message)  
-##            ]
-##        )
-##        print(profile.display_name)
-##        print(profile.user_id)
-##        print(profile.picture_url)
-##        print(profile.status_message)
-
-##        profile = line_bot_api.get_profile(event.source.user_id)
-##        line_bot_api.reply_message(
-##            event.reply_token, [
-##                TextSendMessage(text='Display name: ' + profile.display_name),
-##                TextSendMessage(text='Status message: ' + profile.status_message)
-##            ]
-##        )
-##        else:
-##            line_bot_api.reply_message(
-##                event.reply_token,
-##                TextSendMessage(text="Bot can't use profile API without user ID"))
     elif text == 'Hi':
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         profile = line_bot_api.get_profile(str(keep_uid))
         displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
-#str(event.source).find('"',str(event.source).find('displayName')+15)
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text='hi '+str(displayName)))
-            #event.reply_token,TextSendMessage(text='hi '+str(displayName)))
     elif text == 'Excel':
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1c_Gmmq19LMgDsdBNzo46F1zt_rWp8RXv'))
@@ -132,27 +79,8 @@ def handle_message(event):
             chat_bar_text="Tap here",
             areas=[(RichMenuArea(
                 bounds=RichMenuBounds(x=0, y=0, width=266, height=270),
-                action=line_bot_api.push_message(
-                        keep_uid,ImagemapSendMessage(
-                            base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/monitor_task.png?w=800',
-                            alt_text='monitor_task',
-                            base_size=BaseSize(height=540, width=800),
-                            actions=[
-                                URIImagemapAction(link_uri='https://www.facebook.com',
-                                    area=ImagemapArea(x=0, y=0, width=266, height=270)),
-                                MessageImagemapAction(text='CNSGNSALE1',
-                                    area=ImagemapArea(x=267, y=0, width=267, height=270)),
-                                MessageImagemapAction(text='STSALE',
-                                    area=ImagemapArea(x=533, y=0, width=267, height=270)),
-                                MessageImagemapAction(text='CNSGNSALE',
-                                    area=ImagemapArea(x=0, y=271, width=266, height=270)),
-                                MessageImagemapAction(text='blank1',
-                                    area=ImagemapArea(x=267, y=271, width=267, height=270)),
-                                MessageImagemapAction(text='blank2',
-                                    area=ImagemapArea(x=533, y=271, width=267, height=270))]
-                        )
-                    )
-                )),
+                action=MessageAction(label="moniter", text="Monitor"))),
+                #URIAction(label='report', uri='https://www.facebook.com'))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=267, y=0, width=267, height=270),
                 action=URIAction(label='report', uri='https://www.youtube.com'))),
@@ -176,7 +104,6 @@ def handle_message(event):
         with open('.//main_menu.png', 'rb') as f:
             line_bot_api.set_rich_menu_image(rich_menu_id, 'image/png', f)
                 
-        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         line_bot_api.link_rich_menu_to_user(keep_uid, rich_menu_id)
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text=str(rich_menu_id)))

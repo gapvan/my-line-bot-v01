@@ -46,10 +46,21 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1c_Gmmq19LMgDsdBNzo46F1zt_rWp8RXv'))
     elif text == 'Image':
+##        line_bot_api.reply_message(
+##            event.reply_token,ImageSendMessage(
+##                original_content_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png',
+##                preview_image_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png'))
         line_bot_api.reply_message(
-            event.reply_token,ImageSendMessage(
-                original_content_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png',
-                preview_image_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png'))
+            event.reply_token,ImagemapSendMessage(
+                base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png?w=1040',
+                alt_text='menu',
+                base_size=BaseSize(height=1040, width=1040),
+                actions=[
+                    #URIImagemapAction(link_uri='https://www.facebook.com',
+                    MessageImagemapAction(text='full menu',
+                        area=ImagemapArea(x=0, y=0, width=1040, height=1040))]
+            )
+        )
     elif text == 'MeetingRoom':
         line_bot_api.reply_message(
             event.reply_token,ImageSendMessage(

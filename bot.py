@@ -47,7 +47,9 @@ def handle_message(event):
             event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1c_Gmmq19LMgDsdBNzo46F1zt_rWp8RXv'))
     elif text == 'Image':
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1h1e1iLJ20LgH2H_nqR1FWE1bmJ_Ks9md'))
+            event.reply_token,ImageSendMessage(
+                original_content_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png',
+                preview_image_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png'))
     elif text == 'MeetingRoom':
         line_bot_api.reply_message(
             event.reply_token,ImageSendMessage(

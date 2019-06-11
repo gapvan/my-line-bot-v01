@@ -54,11 +54,11 @@ def handle_message(event):
             event.reply_token,ImagemapSendMessage(
                 base_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/menu.png?w=1040',
                 alt_text='menu',
-                base_size=BaseSize(height=1040, width=1040),
+                base_size=BaseSize(height=702, width=1040),
                 actions=[
                     #URIImagemapAction(link_uri='https://www.facebook.com',
                     MessageImagemapAction(text='full menu',
-                        area=ImagemapArea(x=0, y=0, width=1040, height=1040))]
+                        area=ImagemapArea(x=0, y=0, width=1040, height=702))]
             )
         )
     elif text == 'MeetingRoom':

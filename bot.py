@@ -42,6 +42,11 @@ def handle_message(event):
         displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text='hi '+str(displayName)))
+    elif text == 'Register':
+        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
+        profile = line_bot_api.get_profile(str(keep_uid))
+        displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
+        line_bot_api.push_message('U9f6b4dfa2e30a22ad6a282dc34a86de2', TextSendMessage(text=displayName+':'+keep_uid))
     elif text == 'Excel':
         line_bot_api.reply_message(
             event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1c_Gmmq19LMgDsdBNzo46F1zt_rWp8RXv'))

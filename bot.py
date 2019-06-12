@@ -34,8 +34,9 @@ def handle_message(event):
     if text == 'Profile':
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         profile = line_bot_api.get_profile(str(keep_uid))
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=str(profile)))
+        line_bot_api.push_message('U9f6b4dfa2e30a22ad6a282dc34a86de2', TextSendMessage(text=str(profile)))
+##        line_bot_api.reply_message(
+##            event.reply_token,TextSendMessage(text=str(profile)))
     elif text == 'Hi':
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         profile = line_bot_api.get_profile(str(keep_uid))

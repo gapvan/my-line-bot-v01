@@ -95,7 +95,7 @@ def handle_message(event):
         if chk_permission :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='WPRS'))
         else :
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งานข้อมูลในส่วนนี้ได้ครับ'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งาน WPRS ได้ครับ'))
     elif text == 'Menu':
         rich_menu_to_create = RichMenu(
             size=RichMenuSize(width=800, height=540),

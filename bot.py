@@ -8,7 +8,7 @@ app = Flask(__name__)
 keep_uid = ""
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
-users = [['oorben','U60e0f8b22c313b3971d50c2bce9dbaa9'],['gapx','U9f6b4dfa2e30a22ad6a282dc34a86de2']]
+users = [['oorben','?U60e0f8b22c313b3971d50c2bce9dbaa9'],['gap','?U9f6b4dfa2e30a22ad6a282dc34a86de2']]
 @app.route("/")
 def hello():
     return "Hello World!"
@@ -95,7 +95,7 @@ def handle_message(event):
         if chk_permission :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='WPRS'))
         else :
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Access Deny'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งานข้อมูลในส่วนนี้ได้ครับ'))
     elif text == 'Menu':
         rich_menu_to_create = RichMenu(
             size=RichMenuSize(width=800, height=540),

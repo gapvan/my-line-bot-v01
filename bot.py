@@ -8,7 +8,7 @@ app = Flask(__name__)
 keep_uid = ""
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
-users = [['oorben','?U60e0f8b22c313b3971d50c2bce9dbaa9'],['gap','?U9f6b4dfa2e30a22ad6a282dc34a86de2']]
+users = [['oorben','?U60e0f8b22c313b3971d50c2bce9dbaa9'],['gap','U9f6b4dfa2e30a22ad6a282dc34a86de2']]
 @app.route("/")
 def hello():
     return "Hello World!"
@@ -81,9 +81,9 @@ def handle_message(event):
                         area=ImagemapArea(x=694, y=0, width=347, height=520)),
                     MessageImagemapAction(text='CNSGNSALE',
                         area=ImagemapArea(x=0, y=521, width=347, height=520)),
-                    MessageImagemapAction(text='blank1',
+                    MessageImagemapAction(text='ยังไม่เปิดใช้งานครับ',
                         area=ImagemapArea(x=347, y=521, width=347, height=520)),
-                    MessageImagemapAction(text='blank2',
+                    MessageImagemapAction(text='ยังไม่เปิดใช้งานครับ',
                         area=ImagemapArea(x=694, y=521, width=347, height=520))]
             )
         )
@@ -107,7 +107,7 @@ def handle_message(event):
                 action=MessageAction(label="moniter", text="Monitor"))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=267, y=0, width=267, height=270),
-                action=MessageAction(label="report", text="Report"))),
+                action=MessageAction(label="report", text="ยังไม่เปิดใช้งานครับ"))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=533, y=0, width=267, height=270),
                 action=URIAction(label='cnext', uri='https://passport.central.co.th/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=https://www.successfactors.com/CENTRAL'))),
@@ -116,7 +116,7 @@ def handle_message(event):
                 action=URIAction(label='issue', uri='https://ris6789.central.co.th/arsys/shared/login.jsp?/arsys/'))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=267, y=271, width=267, height=270),
-                action=MessageAction(label=" ", text="Nothing"))),
+                action=MessageAction(label=" ", text="ยังไม่เปิดใช้งานครับ"))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=533, y=271, width=267, height=270),
                 action=MessageAction(label="meetingroom", text="MeetingRoom")))				

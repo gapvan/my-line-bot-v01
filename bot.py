@@ -6,10 +6,8 @@ from linebot.models import (MessageAction,ImagemapArea,URIImagemapAction,Message
 
 app = Flask(__name__)
 keep_uid = ""
-##line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
-##handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
-line_bot_api = LineBotApi('E4ABmKEmT3dLY53SL8AV2UhvlQh16gWPFCBI086NfByC7O1+odYU/i6K/JPAOVCLh8bygVtlNRP8ZCnY4Gx1QvNagk4eN/0gwfDzDGhUQ/T4JjPD8tEoBbZiCubTH1Uyxvi23Im9stUDxiQMzthQnwdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('1c8b7fb623926e7f7f22af4554ebf6d9')
+line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
+handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
 @app.route("/")
 def hello():
@@ -44,10 +42,8 @@ def handle_message(event):
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         profile = line_bot_api.get_profile(str(keep_uid))
         displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
-##        line_bot_api.reply_message(
-##            event.reply_token,TextSendMessage(text='hi '+str(displayName)))
         line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text=str(os.environ['CHANNEL_ACCESS_TOKEN'])+':'+str(os.environ['CHANNEL_SECRET'])))
+            event.reply_token,TextSendMessage(text='hi '+str(displayName)))
         
     elif text == 'Register':
         keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]

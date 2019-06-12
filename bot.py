@@ -8,7 +8,7 @@ app = Flask(__name__)
 keep_uid = ""
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
-
+users = [[oorben,U60e0f8b22c313b3971d50c2bce9dbaa9],[gap,U9f6b4dfa2e30a22ad6a282dc34a86de2]]
 @app.route("/")
 def hello():
     return "Hello World!"
@@ -17,11 +17,9 @@ def hello():
 def webhook():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-
     # handle webhook body
     try:
         handler.handle(body, signature)
@@ -32,23 +30,16 @@ def webhook():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text = event.message.text
-    if text == 'Profile':
-        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
-        profile = line_bot_api.get_profile(str(keep_uid))
-        line_bot_api.push_message('U9f6b4dfa2e30a22ad6a282dc34a86de2', TextSendMessage(text=str(profile)))
-##        line_bot_api.reply_message(
-##            event.reply_token,TextSendMessage(text=str(profile)))
-    elif text == 'Hi':
-        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
-        profile = line_bot_api.get_profile(str(keep_uid))
-        displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text='hi '+str(displayName)))
+    keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
+    profile = line_bot_api.get_profile(str(keep_uid))
+    displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
         
+    if text == 'Profile':
+        line_bot_api.push_message('U9f6b4dfa2e30a22ad6a282dc34a86de2', TextSendMessage(text=str(profile)))
+    elif text == 'Hi':
+        line_bot_api.reply_message(
+            event.reply_token,TextSendMessage(text='hi '+str(displayName)))      
     elif text == 'Register':
-        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
-        profile = line_bot_api.get_profile(str(keep_uid))
-        displayName = str(profile)[str(profile).find('displayName')+15:str(profile).find('"',str(profile).find('displayName')+15)]
         line_bot_api.push_message('U9f6b4dfa2e30a22ad6a282dc34a86de2', TextSendMessage(text=displayName+':'+keep_uid))
     elif text == 'Excel':
         line_bot_api.reply_message(
@@ -96,8 +87,16 @@ def handle_message(event):
                         area=ImagemapArea(x=694, y=521, width=347, height=520))]
             )
         )
+    elif text == 'WPRS':
+        chk_permission = 0
+        for i in range(len(users)) :  
+            if (users[i][0] == displayName) & (users[i][1] == keep_uid) :
+                chk_permission = 1
+        if chk_permission :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='WPRS'))
+        else :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Access Deny'))
     elif text == 'Menu':
-        keep_uid = str(event.source)[str(event.source).find('userId')+10:str(event.source).find('"',str(event.source).find('userId')+10)]
         rich_menu_to_create = RichMenu(
             size=RichMenuSize(width=800, height=540),
             selected=False,
@@ -124,20 +123,16 @@ def handle_message(event):
                 ]
         )
         rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-        print(rich_menu_id)
-        
+        print(rich_menu_id)    
         with open('.//main_menu.png', 'rb') as f:
-            line_bot_api.set_rich_menu_image(rich_menu_id, 'image/png', f)
-                
+            line_bot_api.set_rich_menu_image(rich_menu_id, 'image/png', f)         
         line_bot_api.link_rich_menu_to_user(keep_uid, rich_menu_id)
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text=str(rich_menu_id)))
-
     else:
         print(event.message.text)
 ##        line_bot_api.reply_message(
 ##            event.reply_token,TextSendMessage(text=event.message.text))
-
-
+        
 if __name__ == "__main__":
     app.run()

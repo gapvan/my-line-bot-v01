@@ -8,7 +8,7 @@ app = Flask(__name__)
 keep_uid = ""
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
-users = [['oorben','?U60e0f8b22c313b3971d50c2bce9dbaa9'],['gap','U9f6b4dfa2e30a22ad6a282dc34a86de2']]
+users = [['oorben','U60e0f8b22c313b3971d50c2bce9dbaa9'],['gap','U9f6b4dfa2e30a22ad6a282dc34a86de2']]
 @app.route("/")
 def hello():
     return "Hello World!"
@@ -88,12 +88,39 @@ def handle_message(event):
             )
         )
     elif text == 'WPRS':
-        chk_permission = 0
+        chk_permission = 1
         for i in range(len(users)) :  
             if (users[i][0] == displayName) & (users[i][1] == keep_uid) :
                 chk_permission = 1
         if chk_permission :
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='WPRS'))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1X63rWkPREk3JOXKCvn0X6t-vYuUB05_k'))
+        else :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งาน WPRS ได้ครับ'))
+    elif text == 'CNSGNSALE1':
+        chk_permission = 1
+        for i in range(len(users)) :  
+            if (users[i][0] == displayName) & (users[i][1] == keep_uid) :
+                chk_permission = 1
+        if chk_permission :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=15lrXuWk_-mlCWFo6Legd0WgYOL9-3GLX'))
+        else :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งาน WPRS ได้ครับ'))
+    elif text == 'STSALE':
+        chk_permission = 1
+        for i in range(len(users)) :  
+            if (users[i][0] == displayName) & (users[i][1] == keep_uid) :
+                chk_permission = 1
+        if chk_permission :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1Ph2d5VaCYSQCy92yk5LdUgpg_HaMku5q'))
+        else :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งาน WPRS ได้ครับ'))
+    elif text == 'CNSGNSALE':
+        chk_permission = 1
+        for i in range(len(users)) :  
+            if (users[i][0] == displayName) & (users[i][1] == keep_uid) :
+                chk_permission = 1
+        if chk_permission :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='https://drive.google.com/open?id=1BjibISg0sa48rh-JgFPVGuM_KSefTkQf'))
         else :
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งาน WPRS ได้ครับ'))
     elif text == 'Menu':
@@ -107,7 +134,7 @@ def handle_message(event):
                 action=MessageAction(label="moniter", text="Monitor"))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=267, y=0, width=267, height=270),
-                action=MessageAction(label="report", text="ยังไม่เปิดใช้งานครับ"))),
+                action=MessageAction(label="report", text="https://drive.google.com/open?id=1OtP6gSUbSSUNOSl-PMHwEU2qZxfCjGpy"))),
                 (RichMenuArea(
                 bounds=RichMenuBounds(x=533, y=0, width=267, height=270),
                 action=URIAction(label='cnext', uri='https://passport.central.co.th/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=https://www.successfactors.com/CENTRAL'))),

@@ -61,10 +61,18 @@ def handle_message(event):
             )
         )
     elif text == 'MeetingRoom':
-        line_bot_api.reply_message(
-            event.reply_token,ImageSendMessage(
-                original_content_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/RIS_Meeting_Room.jpg',
-                preview_image_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/RIS_Meeting_Room.jpg'))
+        chk_permission = 1
+        for i in range(len(users)) :  
+            if (users[i][0] == displayName) & (users[i][1] == keep_uid) :
+                chk_permission = 1
+        if chk_permission :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='https://outlook.office.com/owa/?realm=central.co.th&exsvurl=1&ll-cc=3081&modurl=0&path=/calendar/view/Day'))
+        else :
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='คุณไม่มีสิทธิ์เข้าใช้งาน WPRS ได้ครับ'))
+##        line_bot_api.reply_message(
+##            event.reply_token,ImageSendMessage(
+##                original_content_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/RIS_Meeting_Room.jpg',
+##                preview_image_url='https://raw.githubusercontent.com/gapvan/my-line-bot-v01/master/RIS_Meeting_Room.jpg'))
     elif text == 'Monitor':
         line_bot_api.reply_message(
             event.reply_token,ImagemapSendMessage(
